@@ -1,6 +1,6 @@
 package com.iu.s1.util;
 
-public class Pager {
+public class Pager_M1 {
 	
 	//검색 종류(사용할 column)
 	private String kind;
@@ -30,7 +30,7 @@ public class Pager {
 	private boolean before;
 	private boolean after;
 	
-	public Pager() {
+	public Pager_M1() {
 		this.perPage=10L;
 	}
 	

@@ -9,7 +9,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component
-public class FileManager {
+public class FileManager_M1 {
 	
 	//File을 HDD에 저장
 	public String fileSave(MultipartFile multipartFile, String path) throws Exception {
