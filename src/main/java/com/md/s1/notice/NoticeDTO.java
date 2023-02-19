@@ -3,48 +3,54 @@ package com.md.s1.notice;
 import java.sql.Date;
 
 public class NoticeDTO {
-	private Long NOTICENUM;
-	private String NOTICETITLE;
-	private String NOTICECONTENTS;
-	private String NOTICEWRITER;
-	private Date NOTICEREGDATE;
-	private Long NOTICEHIT;
-	public Long getNOTICENUM() {
-		return NOTICENUM;
+	private Long noticeNum;
+	private String noticeTitle;
+	private String noticeContents;
+	private String noticeWriter;
+	private Date noticeRegDate;
+	private Long noticeHit;
+	private NoticeImgDTO noticeImgDTO;
+	public Long getNoticeNum() {
+		return noticeNum;
 	}
-	public void setNOTICENUM(Long nOTICENUM) {
-		NOTICENUM = nOTICENUM;
+	public void setNoticeNum(Long noticeNum) {
+		this.noticeNum = noticeNum;
 	}
-	public String getNOTICETITLE() {
-		return NOTICETITLE;
+	public String getNoticeTitle() {
+		return noticeTitle;
 	}
-	public void setNOTICETITLE(String nOTICETITLE) {
-		NOTICETITLE = nOTICETITLE;
+	public void setNoticeTitle(String noticeTitle) {
+		this.noticeTitle = noticeTitle;
 	}
-	public String getNOTICECONTENTS() {
-		return NOTICECONTENTS;
+	public String getNoticeContents() {
+		return noticeContents;
 	}
-	public void setNOTICECONTENTS(String nOTICECONTENTS) {
-		NOTICECONTENTS = nOTICECONTENTS;
+	public void setNoticeContents(String noticeContents) {
+		this.noticeContents = noticeContents;
 	}
-	
-	public String getNOTICEWRITER() {
-		return NOTICEWRITER;
+	public String getNoticeWriter() {
+		return noticeWriter;
 	}
-	public void setNOTICEWRITER(String nOTICEWRITER) {
-		NOTICEWRITER = nOTICEWRITER;
+	public void setNoticeWriter(String noticeWriter) {
+		this.noticeWriter = noticeWriter;
 	}
-	public Date getNOTICEREGDATE() {
-		return NOTICEREGDATE;
+	public Date getNoticeRegDate() {
+		return noticeRegDate;
 	}
-	public void setNOTICEREGDATE(Date nOTICEREGDATE) {
-		NOTICEREGDATE = nOTICEREGDATE;
+	public void setNoticeRegDate(Date noticeRegDate) {
+		this.noticeRegDate = noticeRegDate;
 	}
-	public Long getNOTICEHIT() {
-		return NOTICEHIT;
+	public Long getNoticeHit() {
+		return noticeHit;
 	}
-	public void setNOTICEHIT(Long nOTICEHIT) {
-		NOTICEHIT = nOTICEHIT;
+	public void setNoticeHit(Long noticeHit) {
+		this.noticeHit = noticeHit;
+	}
+	public NoticeImgDTO getNoticeImgDTO() {
+		return noticeImgDTO;
+	}
+	public void setNoticeImgDTO(NoticeImgDTO noticeImgDTO) {
+		this.noticeImgDTO = noticeImgDTO;
 	}
 	
 	
