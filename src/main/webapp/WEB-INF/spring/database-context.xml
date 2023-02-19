@@ -6,7 +6,7 @@
 	<!-- mybatis 사용하기 위해 객체 생성 -->
 	<!-- 그냥 호출시 default 생성자로 객체 만듦 -->
 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyPlaceholderConfigurer">
-	<property name="location" value="classpath:database/info/dbinfo.properties"></property>
+	<property name="location" value="classpath:database/info/dbInfo.properties"></property>
 	</bean>
 	
 	<!-- Connection 객체 생성-->

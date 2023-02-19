@@ -6,5 +6,11 @@
   <configuration>
   	<typeAliases>
 
+	 <typeAlias type="com.md.s1.qna.QnaDTO" alias="QnaDTO"/>
+	 <typeAlias type="com.md.s1.qna.QnaImgDTO" alias="QnaImgDTO"/>
+  	 <typeAlias type="java.lang.Long" alias="Long"/>
+  	 <typeAlias type="java.lang.Integer" alias="Integer"/>
+    
+    
   	</typeAliases>
   </configuration>
