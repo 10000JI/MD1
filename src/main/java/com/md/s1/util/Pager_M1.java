@@ -2,6 +2,12 @@ package com.md.s1.util;
 
 public class Pager_M1 {
 	
+	//검색종류(사용할 column)
+	private String kind;
+	
+	//검색어
+	private String search;
+	
 	//한 페이지에 출력할 row 갯수
 	private Long perPage;
 	
@@ -24,6 +30,7 @@ public class Pager_M1 {
 	
 	private boolean before;
 	private boolean after;
+	
 	
 	public Pager_M1() {
 		this.perPage=10L;
@@ -93,6 +100,23 @@ public class Pager_M1 {
 		}
 	}
 	
+	public String getKind() {
+		return kind;
+	}
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(search==null) {
+			search="";
+		}
+		return search;
+	}
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 
 	public Long getTotalPage() {
 		return totalPage;

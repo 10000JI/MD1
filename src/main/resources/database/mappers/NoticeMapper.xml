@@ -4,9 +4,32 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.md.s1.notice.NoticeDAO">
-  
+  	<sql id="searchCondition">
+ 		<if test="kind == 'contents'">
+ 			WHERE NOTICECONTENTS LIKE '%' || #{search} || '%'
+ 		</if>
+ 		
+ 		<if test="kind == 'title'">
+ 			WHERE NOTICETITLE LIKE '%' || #{search} || '%'
+ 		</if>
+ 	</sql>
+  	
+  	<sql id="searchCondition2">
+  		WHERE
+  			<choose>
+  				<when test="kind == 'contents'">
+  					NOTICECONTENTS
+  				</when>
+  				<otherwise>
+  					NOTICETITLE
+  				</otherwise>
+  			</choose>
+  		LIKE '%' || #{search} || '%'
+  	</sql>
+  	
   	<select id="getNoticeCount" parameterType="Pager" resultType="Long">
   		SELECT COUNT(NOTICENUM) FROM NOTICE
+  		<include refid="searchCondition"></include>
   	</select>
   	
   	<select id="getNoticeList" parameterType="Pager" resultType="NoticeDTO">
@@ -14,7 +37,8 @@
 		(
 			SELECT ROWNUM R, B.* FROM
 			(
-				SELECT * FROM NOTICE				
+				SELECT * FROM NOTICE	
+				<include refid="searchCondition"></include>			
 				ORDER BY NOTICENUM DESC
 			) B
 		)

@@ -23,8 +23,8 @@ public class NoticeDAOTest extends MyTestCase {
 			int num = (int)(d * 1000); //123
 			d = num / 100.0;
 			NoticeDTO noticeDTO = new NoticeDTO();
-			noticeDTO.setNoticeTitle("[공지] 감사보고서-"+num);
-			noticeDTO.setNoticeContents("[공지] 감사보고서");
+			noticeDTO.setNoticeTitle("[공지] 감독보고서-"+num);
+			noticeDTO.setNoticeContents("[공지] 감독보고서");
 			noticeDTO.setNoticeWriter("관리자");
 			noticeDTO.setNoticeHit(100L);
 			a = noticeDAO.setNoticeAdd(noticeDTO);
