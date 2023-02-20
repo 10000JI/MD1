@@ -11,7 +11,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 			<li class="nav-item"><a class="nav-link active" href="/notice/list">공지사항</a></li>
-			<li class="nav-item"><a class="nav-link active" href="/qna/list">Q&A</a></li>
+			<li class="nav-item"><a class="nav-link active" href="/qna/list">Q&A-list</a></li>
+			<li class="nav-item"><a class="nav-link active" href="/qna/add">Q&A-add</a></li>
 		</ul>
 		
 		<ul class="navbar-nav">
