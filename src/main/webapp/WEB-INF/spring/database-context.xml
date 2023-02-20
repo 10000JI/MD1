@@ -5,17 +5,17 @@
 	
 	<!-- mybatis 사용하기 위해 객체 생성 -->
 	<!-- 그냥 호출시 default 생성자로 객체 만듦 -->
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyPlaceholderConfigurer">
+	<!--<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyPlaceholderConfigurer">
 	<property name="location" value="classpath:database/info/dbInfo.properties"></property>
-	</bean>
+	</bean>-->
 	
 	<!-- Connection 객체 생성-->
 	<!-- 부모 SqlSession로 주입해야함 -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-		<property name="username" value="${username}"></property>
-		<property name="password" value="${password}"></property>
-		<property name="url" value="${url}"></property>
-		<property name="driverClassName" value="${driver}"></property>
+		<property name="username" value="user01"></property>
+		<property name="password" value="user01"></property>
+		<property name="url" value="jdbc:oracle:thin:@192.168.1.120:1521:xe"></property>
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 	</bean>
 	
 	<!-- dataSource이름으로 만든 객체(Connection)와 OOOOMapper.xml, config.xml 연결 객체 -->
