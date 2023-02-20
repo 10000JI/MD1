@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.MD1.s1.qna.QnaDAO">
+  	
+    <select id="getQnaNum" resultType="Long">
+  	SELECT QNA_SEQ.NEXTVAL FROM DUAL
+	</select>
+	
+    <select id="getQnaList"  resultType="QnaDTO">
+	SELECT *
+	FROM QNA
+   </select>
+    
+    <select id="getQnaDetail" parameterType="QnaDTO" resultType="QnaDTO">
+	SELECT *
+	FROM QNA
+	WHERE QNANUM = #{qnaNum} 
+   </select>
+
+	<insert id="setQnaAdd" parameterType="QnaDTO">
+		<selectKey keyProperty="qnaNum" order="BEFORE" resultType="Long">
+			SELECT QNA_SEQ.NEXTVAL FROM DUAL                <!-- 파일 업로드를 위해 미리 시퀸서를 동작하게 하는 sql 문 -->
+		</selectKey>
+		
+		INSERT INTO QNA 
+		VALUES(#{qnaNum},#{qnaTitle},#{qnaContents},#{qnaWriter},SYSDATE,#{qnaHit})
+	</insert>
+
+	<delete id="setQnaDelete" parameterType="QnaDTO">
+	DELETE QNA WHERE QNANUM = #{qnaNum} 
+	</delete>
+	
+	<update id="setQnaUpdate" parameterType="QnaDTO">
+	UPDATE QNA SET QNATITLE=#{qnaTitle},QNACONTENTS=#{qnaContents},QNAWRITER=#{qnaWriter},QNAREGDATE=#{qnaRegDate},QNAHIT=#{qnaHit}  <!-- num은 수정x-->
+	WHERE QNANUM = #{qnaNum}
+	</update>
+	
+	<insert id="setQnaImgAdd" parameterType="QnaImgDTO">
+		INSERT INTO QNAIMG
+		VALUES(QNA_SEQ.NEXTVAL,#{qnaNum},#{fileNum},#{fileName},#{oriName})
+	 
+	</insert>
+
+	
+</mapper>
