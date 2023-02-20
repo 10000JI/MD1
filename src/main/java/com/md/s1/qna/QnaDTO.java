@@ -9,7 +9,15 @@ public class QnaDTO {
 	private Date QnaRegDate;
 	private String QnaWriter;
 	private Integer QnaHit;
+	private QnaImgDTO qnaImgDTO;
 	
+	
+	public QnaImgDTO getQnaImgDTO() {
+		return qnaImgDTO;
+	}
+	public void setQnaImgDTO(QnaImgDTO qnaImgDTO) {
+		this.qnaImgDTO = qnaImgDTO;
+	}
 	public Long getQnaNum() {
 		return QnaNum;
 	}

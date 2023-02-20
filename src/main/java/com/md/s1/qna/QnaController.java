@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.md.s1.util.Pager_D1;
+
 
 @Controller
 @RequestMapping("/qna/*")
@@ -21,12 +23,13 @@ public class QnaController {
 	private QnaService qnaService;
 	
 	@RequestMapping (value="list", method = RequestMethod.GET)
-	public ModelAndView getQnaList() throws Exception {
+	public ModelAndView getQnaList(Pager_D1 pager_D1) throws Exception {
 	ModelAndView mv = new ModelAndView();
-	List<QnaDTO> ar = qnaService.getQnaList();
+	List<QnaDTO> ar = qnaService.getQnaList(pager_D1);
 	
 	mv.setViewName("qna/list");
 	mv.addObject("list",ar);
+	mv.addObject("pager",pager_D1);
 	
 	return mv;
 	}
@@ -91,7 +94,7 @@ public class QnaController {
 	@RequestMapping(value ="update",method = RequestMethod.POST)
 	public ModelAndView setQnaUpdate(QnaDTO qnaDTO, ModelAndView mv) throws Exception {
 		int result = qnaService.setQnaUpdate(qnaDTO);
-		mv.setViewName("redirect:.list");
+		mv.setViewName("redirect: ./list");
 		return mv;
 	}
 	

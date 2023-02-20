@@ -5,20 +5,66 @@
   
 <mapper namespace="com.MD1.s1.qna.QnaDAO">
   	
+  	
+  	 <select id="getQnaDetail" parameterType="QnaDTO" resultMap="qnaDetailResult">
+	 	SELECT B.*, BI.*
+		FROM QNA B
+		LEFT OUTER JOIN
+		QNAIMG BI
+		ON (B.QNANUM = BI.QNANUM)
+		WHERE B.QNANUM=#{qnaNum}
+	 		
+ 	</select>
+ 	
+ 	<resultMap type="QNADTO" id="qnaDetailResult">
+ 		<!-- Primary key -->
+ 		<id column="QNANUM" property="qnaNum"/>
+ 		<!-- 그외 나머지 -->
+ 		<result column="QNATITLE" property="qnaTitle"/>
+ 		<result column="QNACONTENTS" property="qnaContents"/>
+ 		<result column="QNAWRITER" property="qnaWriter"/>
+ 		<result column="QNAREGDATE" property="qnaRegDate"/>
+ 		<result column="QNAHIT" property="qnaHit"/>
+ 		<!-- 1:1 -->
+ 		<association property="qnaImgDTO" javaType="QnaImgDTO">
+ 			<id column="FILENUM" property="fileNum"/>
+ 			<result column="FILENAME" property="fileName"/>
+ 			<result column="ORINAME" property="oriName"/>
+ 		</association>
+ 		<!-- 1:N -->
+ 		<!-- <collection property=""></collection> -->
+ 		
+ 	</resultMap>
+  	
+  	
+  	
     <select id="getQnaNum" resultType="Long">
   	SELECT QNA_SEQ.NEXTVAL FROM DUAL
 	</select>
 	
-    <select id="getQnaList"  resultType="QnaDTO">
-	SELECT *
-	FROM QNA
-   </select>
+	<select id="getQnaCount" parameterType="Pager" resultType="Long">
+  		SELECT COUNT(QNANUM) FROM QNA
+  	</select>
+	
+	
+	
+   <select id="getQnaList" parameterType="Pager" resultType="QnaDTO">
+  		SELECT * FROM
+		(
+			SELECT ROWNUM R, B.* FROM
+			(
+				SELECT * FROM QNA				
+				ORDER BY QNANUM DESC
+			) B
+		)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+  	</select>
     
-    <select id="getQnaDetail" parameterType="QnaDTO" resultType="QnaDTO">
+   <!--   <select id="getQnaDetail" parameterType="QnaDTO" resultType="QnaDTO">
 	SELECT *
 	FROM QNA
 	WHERE QNANUM = #{qnaNum} 
-   </select>
+   </select>-->
 
 	<insert id="setQnaAdd" parameterType="QnaDTO">
 		<selectKey keyProperty="qnaNum" order="BEFORE" resultType="Long">
@@ -40,7 +86,7 @@
 	
 	<insert id="setQnaImgAdd" parameterType="QnaImgDTO">
 		INSERT INTO QNAIMG
-		VALUES(QNA_SEQ.NEXTVAL,#{qnaNum},#{fileNum},#{fileName},#{oriName})
+		VALUES(QNA_SEQ.NEXTVAL,#{fileName},#{oriName},#{qnaNum})
 	 
 	</insert>
 
