@@ -49,20 +49,33 @@
       <td>${dto.qnaContents}</td>
     </tr>
   </tbody>
+  						
 </table>
 	</c:if>
-	
 	
 	<c:if test = "${empty dto}">
 	 <h3>존재하지 않는 num </h3>
 	</c:if>
+	<div>
+		<c:if test="${not empty dto.qnaImgDTO}">
+			<img src="../resources/upload/qna/${dto.qnaImgDTO.fileName}">
+		</c:if>
+	</div>
 	
 	
-	<a href="./update?qnaNum=${dto.qnaNum}">글수정</a>
-	<a href="./delete?qnaNum=${dto.qnaNum}">글삭제</a>
-	<a href="./list">목록으로</a>
+	
+	
+	
 	
 </div>
-
+<div class="d-flex justify-content-around">
+	<div class="row gy-4">
+		<div class="col">
+			<a class="btn btn-warning" href="./update?qnaNum=${dto.qnaNum}" role="button">글수정</a>
+			<a class="btn btn-danger" href="./delete?qnaNum=${dto.qnaNum}" role="button">글삭제</a>
+			<a class="btn btn-primary" href="./list" role="button">목록으로</a>
+		</div>
+	</div>
+</div>
 </body>
 </html>

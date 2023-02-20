@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.md.s1.notice.NoticeImgDTO;
 import com.md.s1.util.FileManager;
+import com.md.s1.util.Pager_D1;
 
 
 
@@ -25,9 +27,11 @@ public class QnaService {
 	private FileManager fileManager;
 	
 	
-	 public List<QnaDTO> getQnaList() throws Exception{
-     List<QnaDTO> ar = qnaDAO.getQnaList();
-	 return ar;
+	 public List<QnaDTO> getQnaList(Pager_D1 pager_D1) throws Exception{
+		Long totalCount = qnaDAO.getQnaCount(pager_D1);
+		pager_D1.makeNum(totalCount);
+		pager_D1.makeRow();
+     	return qnaDAO.getQnaList(pager_D1);
 	 }
 	 
 	 public QnaDTO getQnaDetail(QnaDTO qnaDTO) throws Exception {
@@ -36,23 +40,21 @@ public class QnaService {
 	 
 	 public int  setQnaAdd(QnaDTO qnaDTO, MultipartFile pic) throws Exception {
 		 int result = qnaDAO.setQnaAdd(qnaDTO);
-		//1. File을 HDD에 저장 경로
-			// Project 경로가 아닌 OS가 이용하는 경로
-			String realPath = servletContext.getRealPath("resources/upload/qna");
-			System.out.println(realPath);
-			String fileName = fileManager.fileSave(pic, realPath); //FileManager 에서 준 리턴 파일네임 
-																   //이걸 이제 DB에 저장해야함 
-			//2. DB에 저장
-			QnaImgDTO qnaImgDTO = new QnaImgDTO();
-			//FILENUM 은 시퀸서로 
-			qnaImgDTO.setFileName(fileName); // 하드디스크에 저장될 파일 이름 
-			qnaImgDTO.setOriName(pic.getOriginalFilename()); //오리지널 네임 
-			qnaImgDTO.setQnaNum(qnaDTO.getQnaNum()); // QnaNum 을 저장
+			if(!pic.isEmpty()) { 
+				String realPath = servletContext.getRealPath("resources/upload/qna");
+				System.out.println(realPath);
+				String fileName = fileManager.fileSave(pic, realPath);
 			
-			result = qnaDAO.setQnaImgAdd(qnaImgDTO);
-					 
-			return result;
-	 } 
+				QnaImgDTO qnaImgDTO = new QnaImgDTO();
+				qnaImgDTO.setFileName(fileName);
+				qnaImgDTO.setOriName(pic.getOriginalFilename());
+				qnaImgDTO.setQnaNum(qnaDTO.getQnaNum());
+				
+				result = qnaDAO.setQnaImgAdd(qnaImgDTO);
+			}		
+
+			return result; //bankBookDAO.setBankBookAdd(bankBookDTO);
+		}
 	 
 	 public int setQnaUpdate(QnaDTO qnaDTO) throws Exception {
 		 return qnaDAO.setQnaUpdate(qnaDTO);
