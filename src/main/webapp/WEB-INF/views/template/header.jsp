@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <nav class="navbar bg-dark  navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid ">
-  	<a href="/" class="navbar-brand"><img src="/resources/images/logo.png" alt=""></a>
+  	<a href="/" class="navbar-brand"><img src="#" alt=""></a>
  	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
